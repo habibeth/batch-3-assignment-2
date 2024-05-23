@@ -5,7 +5,7 @@ import { ProductControllers } from './product.controller'
 const router = express.Router()
 
 
-// router.get("/products", ProductControllers.searchProducts);
+router.get("/products", ProductControllers.searchProducts);
 router.post("/products", ProductControllers.createProduct);
 router.get("/products", ProductControllers.getProducts);
 router.get("/products/:productId", ProductControllers.getSingleProduct);

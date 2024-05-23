@@ -11,14 +11,20 @@ const getAllOrdersIntoDB = async () => {
     return result;
 }
 
-// const getEmailWiseOrderIntoDB = async (email: string) => {
-//     const result = await Order.findOne({ email: email });
-//     return result;
-// }
+const searchOrderIntoDB = async (email: string) => {
+    if (email) {
+        const result = await Order.find({ email: email });
+        return result;
+    }
+    else {
+        const result = await Order.find({});
+        return result;
+    }
+}
 
 
 export const OrderServices = {
     createOrderIntoDB,
     getAllOrdersIntoDB,
-    // getEmailWiseOrderIntoDB
+    searchOrderIntoDB
 }

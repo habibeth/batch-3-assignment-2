@@ -95,24 +95,24 @@ const deleteSingleProduct = async (req: Request, res: Response) => {
         })
     }
 }
-// const searchProducts = async (req: Request, res: Response) => {
-//     try {
-//         const { searchTerm } = req.query;
-//         const filter = await ProductServices.searchProductsIntoDB(searchTerm as string);
+const searchProducts = async (req: Request, res: Response) => {
+    try {
+        const { searchTerm } = req.query;
+        const filter = await ProductServices.searchProductsIntoDB(searchTerm as string);
 
-//         res.status(200).json({
-//             success: true,
-//             message: "Product deleted successfully!",
-//             data: filter,
-//         })
-//     } catch (error: any) {
-//         res.status(500).json({
-//             success: false,
-//             message: error.message || "Something went to wrong!",
-//             data: error
-//         })
-//     }
-// }
+        res.status(200).json({
+            success: true,
+            message: "Product deleted successfully!",
+            data: filter,
+        })
+    } catch (error: any) {
+        res.status(500).json({
+            success: false,
+            message: error.message || "Something went to wrong!",
+            data: error
+        })
+    }
+}
 
 
 export const ProductControllers = {
@@ -121,5 +121,5 @@ export const ProductControllers = {
     getSingleProduct,
     putSingleProduct,
     deleteSingleProduct,
-    // searchProducts
+    searchProducts
 }

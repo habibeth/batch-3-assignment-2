@@ -27,16 +27,20 @@ const deleteSingleProductIntoDB = async (id: string) => {
     return result;
 }
 
-// const searchProductsIntoDB = async (searchTerm: string) => {
-//     const data = await Product.find({});
-//     const result = data.filter(singleData => {
-//         const dataName = (singleData.name).toLowerCase()
-//         searchTerm = searchTerm.toLowerCase();
-//         return dataName.includes(searchTerm)
-//     })
-//     return result;
-
-// }
+const searchProductsIntoDB = async (searchTerm: string) => {
+    const data = await Product.find({});
+    if (searchTerm) {
+        const result = data.filter(singleData => {
+            const dataName = (singleData.name).toLowerCase()
+            searchTerm = searchTerm.toLowerCase();
+            return dataName.includes(searchTerm)
+        })
+        return result;
+    } else {
+        const result = await Product.find();
+        return result;
+    }
+}
 
 export const ProductServices = {
     createProductIntoDB,
@@ -44,5 +48,5 @@ export const ProductServices = {
     getSingleProductIntoDB,
     putSingleProductIntoDB,
     deleteSingleProductIntoDB,
-    // searchProductsIntoDB
+    searchProductsIntoDB
 } 
