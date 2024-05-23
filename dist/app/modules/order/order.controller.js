@@ -42,25 +42,26 @@ const getAllOrders = async (req, res) => {
         });
     }
 };
-// const getEmailWiseAllOrders = async (req: Request, res: Response) => {
-//     try {
-//         const { email } = req.query;
-//         const result = await OrderServices.getEmailWiseOrderIntoDB(email as string)
-//         res.status(200).json({
-//             success: true,
-//             message: "Orders fetched successfully for user email!",
-//             data: result
-//         })
-//     } catch (error: any) {
-//         res.status(500).json({
-//             success: false,
-//             message: error.message || "Something went to wrong!",
-//             data: error
-//         })
-//     }
-// }
+const searchOrders = async (req, res) => {
+    try {
+        const { email } = req.query;
+        const filter = await order_service_1.OrderServices.searchOrderIntoDB(email);
+        res.status(200).json({
+            success: true,
+            message: "Product deleted successfully!",
+            data: filter,
+        });
+    }
+    catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message || "Something went to wrong!",
+            data: error
+        });
+    }
+};
 exports.OrderController = {
     createOrders,
     getAllOrders,
-    // getEmailWiseAllOrders
+    searchOrders
 };

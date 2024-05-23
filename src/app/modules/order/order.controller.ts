@@ -48,7 +48,7 @@ const searchOrders = async (req: Request, res: Response) => {
 
         res.status(200).json({
             success: true,
-            message: "Product deleted successfully!",
+            message: "Orders fetched successfully for user email!",
             data: filter,
         })
     } catch (error: any) {

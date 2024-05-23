@@ -97,28 +97,29 @@ const deleteSingleProduct = async (req, res) => {
         });
     }
 };
-// const searchProducts = async (req: Request, res: Response) => {
-//     try {
-//         const { searchTerm } = req.query;
-//         const filter = await ProductServices.searchProductsIntoDB(searchTerm as string);
-//         res.status(200).json({
-//             success: true,
-//             message: "Product deleted successfully!",
-//             data: filter,
-//         })
-//     } catch (error: any) {
-//         res.status(500).json({
-//             success: false,
-//             message: error.message || "Something went to wrong!",
-//             data: error
-//         })
-//     }
-// }
+const searchProducts = async (req, res) => {
+    try {
+        const { searchTerm } = req.query;
+        const filter = await product_service_1.ProductServices.searchProductsIntoDB(searchTerm);
+        res.status(200).json({
+            success: true,
+            message: "Product deleted successfully!",
+            data: filter,
+        });
+    }
+    catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message || "Something went to wrong!",
+            data: error
+        });
+    }
+};
 exports.ProductControllers = {
     createProduct,
     getProducts,
     getSingleProduct,
     putSingleProduct,
     deleteSingleProduct,
-    // searchProducts
+    searchProducts
 };

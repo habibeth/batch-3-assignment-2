@@ -102,7 +102,7 @@ const searchProducts = async (req: Request, res: Response) => {
 
         res.status(200).json({
             success: true,
-            message: "Product deleted successfully!",
+            message: "Products matching search term {VALUE} fetched successfully!",
             data: filter,
         })
     } catch (error: any) {

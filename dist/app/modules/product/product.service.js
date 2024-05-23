@@ -23,20 +23,26 @@ const deleteSingleProductIntoDB = async (id) => {
     const result = await product_model_1.Product.deleteOne({ _id: id });
     return result;
 };
-// const searchProductsIntoDB = async (searchTerm: string) => {
-//     const data = await Product.find({});
-//     const result = data.filter(singleData => {
-//         const dataName = (singleData.name).toLowerCase()
-//         searchTerm = searchTerm.toLowerCase();
-//         return dataName.includes(searchTerm)
-//     })
-//     return result;
-// }
+const searchProductsIntoDB = async (searchTerm) => {
+    const data = await product_model_1.Product.find({});
+    if (searchTerm) {
+        const result = data.filter(singleData => {
+            const dataName = (singleData.name).toLowerCase();
+            searchTerm = searchTerm.toLowerCase();
+            return dataName.includes(searchTerm);
+        });
+        return result;
+    }
+    else {
+        const result = await product_model_1.Product.find();
+        return result;
+    }
+};
 exports.ProductServices = {
     createProductIntoDB,
     getAllProductsIntoDB,
     getSingleProductIntoDB,
     putSingleProductIntoDB,
     deleteSingleProductIntoDB,
-    // searchProductsIntoDB
+    searchProductsIntoDB
 };
